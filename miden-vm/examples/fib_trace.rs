@@ -4,6 +4,7 @@ use miden_processor::ExecutionOptions;
 use miden_prover::{ProvingOptions, prove};
 use miden_verifier::verify;
 use miden_vm::{AdviceInputs, Assembler, DefaultHost, ProgramInfo, StackInputs, execute};
+use std::time::Instant;
 
 fn main() {
     // Define the Miden Assembly program for calculating Fibonacci sequence
@@ -48,6 +49,7 @@ fn main() {
     let proving_options = ProvingOptions::default();
     let mut host_for_proving = DefaultHost::default();
 
+    let proof_start = Instant::now();
     let (stack_outputs, proof) = prove(
         &program,
         stack_inputs.clone(),
@@ -56,22 +58,29 @@ fn main() {
         proving_options,
     )
     .expect("Failed to generate proof");
+    let proof_time = proof_start.elapsed();
 
     println!("Proof generated successfully!");
+    println!("Proof generation time: {:?}", proof_time);
     println!("Stack outputs: {:?}", stack_outputs);
 
     // Verify the proof
     println!("\n=== Verifying Proof ===");
     let program_info: ProgramInfo = program.into();
 
+    let verify_start = Instant::now();
     match verify(program_info, stack_inputs, stack_outputs.clone(), proof) {
         Ok(security_level) => {
+            let verify_time = verify_start.elapsed();
             println!("✓ Proof verification successful!");
+            println!("Verification time: {:?}", verify_time);
             println!("Security level: {} bits", security_level);
             println!("Final Fibonacci result: {}", stack_outputs[0]);
         },
         Err(e) => {
+            let verify_time = verify_start.elapsed();
             println!("✗ Proof verification failed: {:?}", e);
+            println!("Verification time: {:?}", verify_time);
         },
     }
 }
