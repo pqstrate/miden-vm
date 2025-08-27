@@ -1,7 +1,9 @@
 //! Example: Run 10 rounds of Fibonacci in Miden VM and print the execution trace.
 
 use miden_processor::ExecutionOptions;
-use miden_vm::{execute, AdviceInputs, Assembler, DefaultHost, StackInputs};
+use miden_prover::{ProvingOptions, prove};
+use miden_verifier::verify;
+use miden_vm::{AdviceInputs, Assembler, DefaultHost, ProgramInfo, StackInputs, execute};
 
 fn main() {
     // Define the Miden Assembly program for calculating Fibonacci sequence
@@ -33,17 +35,43 @@ fn main() {
     let options = ExecutionOptions::default(); // Default execution options
 
     // Execute the program and capture the trace
-    let trace = execute(
-        &program,
-        stack_inputs,
-        advice_inputs,
-        &mut host,
-        options,
-    )
-    .expect("Program execution failed");
+    let trace = execute(&program, stack_inputs.clone(), advice_inputs.clone(), &mut host, options)
+        .expect("Program execution failed");
 
     // Output the execution trace
     println!("=== Miden VM Fibonacci Execution Trace ===");
     // println!("{:?}", trace);
     trace.print();
+
+    // Generate proof
+    println!("\n=== Generating Proof ===");
+    let proving_options = ProvingOptions::default();
+    let mut host_for_proving = DefaultHost::default();
+
+    let (stack_outputs, proof) = prove(
+        &program,
+        stack_inputs.clone(),
+        advice_inputs.clone(),
+        &mut host_for_proving,
+        proving_options,
+    )
+    .expect("Failed to generate proof");
+
+    println!("Proof generated successfully!");
+    println!("Stack outputs: {:?}", stack_outputs);
+
+    // Verify the proof
+    println!("\n=== Verifying Proof ===");
+    let program_info: ProgramInfo = program.into();
+
+    match verify(program_info, stack_inputs, stack_outputs.clone(), proof) {
+        Ok(security_level) => {
+            println!("✓ Proof verification successful!");
+            println!("Security level: {} bits", security_level);
+            println!("Final Fibonacci result: {}", stack_outputs[0]);
+        },
+        Err(e) => {
+            println!("✗ Proof verification failed: {:?}", e);
+        },
+    }
 }
