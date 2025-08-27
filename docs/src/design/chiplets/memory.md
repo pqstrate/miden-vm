@@ -17,7 +17,7 @@ In the above, `addr` column holds memory address, and `value` column holds the f
 The AIR constraints for this design are very simple. First, we need to ensure that values in the `addr` column either remain the same or are incremented by $1$ as we move from one row to the next. This can be achieved with the following constraint:
 
 $$
-(a' - a) \cdot (a' - a - 1) = 0
+(a' - a) \cdot (a' -  a - 1) = 0
 $$
 
 where $a$ is the value in `addr` column in the current row, and $a'$ is the value in this column in the next row.

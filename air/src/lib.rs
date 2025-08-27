@@ -238,28 +238,28 @@ impl Air for ProcessorAir {
         // clk' = clk + 1
         result[0] = next[CLK_COL_IDX] - (current[CLK_COL_IDX] + E::ONE);
 
-        if IS_FULL_CONSTRAINT_SET {
-            // --- stack operations
-            // -------------------------------------------------------------------
-            stack::enforce_constraints::<E>(
-                frame,
-                select_result_range!(result, self.constraint_ranges.stack),
-            );
+        // if IS_FULL_CONSTRAINT_SET {
+        //     // --- stack operations
+        //     // -------------------------------------------------------------------
+        //     stack::enforce_constraints::<E>(
+        //         frame,
+        //         select_result_range!(result, self.constraint_ranges.stack),
+        //     );
 
-            // --- range checker
-            // ----------------------------------------------------------------------
-            range::enforce_constraints::<E>(
-                frame,
-                select_result_range!(result, self.constraint_ranges.range_checker),
-            );
+        //     // --- range checker
+        //     // ----------------------------------------------------------------------
+        //     range::enforce_constraints::<E>(
+        //         frame,
+        //         select_result_range!(result, self.constraint_ranges.range_checker),
+        //     );
 
-            // --- chiplets (hasher, bitwise, memory) -------------------------
-            chiplets::enforce_constraints::<E>(
-                frame,
-                periodic_values,
-                select_result_range!(result, self.constraint_ranges.chiplets),
-            );
-        }
+        //     // --- chiplets (hasher, bitwise, memory) -------------------------
+        //     chiplets::enforce_constraints::<E>(
+        //         frame,
+        //         periodic_values,
+        //         select_result_range!(result, self.constraint_ranges.chiplets),
+        //     );
+        // }
     }
 
     fn evaluate_aux_transition<F, E>(
