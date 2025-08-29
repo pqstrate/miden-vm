@@ -31,6 +31,7 @@ std = ["miden-core/std", "winter-air/std", "thiserror/std"]
 testing = []
 
 [dependencies]
+ark-std = "0.5.0"
 thiserror.workspace = true
 miden-core.workspace = true
 winter-air.workspace = true

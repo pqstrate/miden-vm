@@ -1099,6 +1099,7 @@ dependencies = [
 name = "miden-air"
 version = "0.18.0"
 dependencies = [
+ "ark-std",
  "criterion",
  "miden-core",
  "proptest",
