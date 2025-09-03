@@ -80,7 +80,6 @@ impl Air for ProcessorAir {
 
     fn new(trace_info: TraceInfo, pub_inputs: PublicInputs, options: WinterProofOptions) -> Self {
         
-        ark_std::println!("use 1");
         // --- system -----------------------------------------------------------------------------
         let mut main_degrees = vec![
             TransitionConstraintDegree::new(1), // clk' = clk + 1
@@ -165,7 +164,6 @@ impl Air for ProcessorAir {
         // first value of clk is 0
         let mut result = vec![Assertion::single(CLK_COL_IDX, 0, ZERO)];
 
-        ark_std::println!("use 2");
         if IS_FULL_CONSTRAINT_SET {
             // first value of fmp is 2^30
             result.push(Assertion::single(FMP_COL_IDX, 0, Felt::new(2u64.pow(30))));
@@ -206,7 +204,6 @@ impl Air for ProcessorAir {
             aux_rand_elements,
         );
 
-        ark_std::println!("use 3");
         // --- set assertions for the first step --------------------------------------------------
         if IS_FULL_CONSTRAINT_SET {
             // add initial assertions for the stack's auxiliary columns.
@@ -242,7 +239,6 @@ impl Air for ProcessorAir {
         // clk' = clk + 1
         result[0] = next[CLK_COL_IDX] - (current[CLK_COL_IDX] + E::ONE);
 
-        ark_std::println!("use 4");
         if IS_FULL_CONSTRAINT_SET {
             // --- stack operations
             // -------------------------------------------------------------------
