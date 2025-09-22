@@ -79,7 +79,6 @@ impl Air for ProcessorAir {
     type PublicInputs = PublicInputs;
 
     fn new(trace_info: TraceInfo, pub_inputs: PublicInputs, options: WinterProofOptions) -> Self {
-        
         // --- system -----------------------------------------------------------------------------
         let mut main_degrees = vec![
             TransitionConstraintDegree::new(1), // clk' = clk + 1

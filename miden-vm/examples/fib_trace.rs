@@ -1,10 +1,11 @@
 //! Example: Run 10 rounds of Fibonacci in Miden VM and print the execution trace.
 
+use std::time::Instant;
+
 use miden_processor::ExecutionOptions;
 use miden_prover::{ProvingOptions, prove};
 use miden_verifier::verify;
 use miden_vm::{AdviceInputs, Assembler, DefaultHost, ProgramInfo, StackInputs, execute};
-use std::time::Instant;
 
 fn main() {
     // Define the Miden Assembly program for calculating Fibonacci sequence
