@@ -25,6 +25,10 @@ path = "src/lib.rs"
 bench = false
 doctest = false
 
+[[example]]
+name = "fib_trace"
+path = "examples/fib_trace.rs"
+
 [[bench]]
 name = "program_execution"
 required-features = ["internal"]

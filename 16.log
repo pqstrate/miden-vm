@@ -1,0 +1,33 @@
+===============================================================================
+Prove program: miden-vm/masm-examples/hashing/blake3_1to1/blake3_1to1.masm
+-------------------------------------------------------------------------------
+2025-09-16T10:40:57.578427Z read_library_files: close time.busy=982ns time.idle=1.45µs
+2025-09-16T10:40:57.578466Z read_input_file: close time.busy=18.7µs time.idle=181ns
+2025-09-16T10:40:57.583857Z read_program_file: close time.busy=294µs time.idle=962ns path=miden-vm/masm-examples/hashing/blake3_1to1/blake3_1to1.masm
+2025-09-16T10:40:57.584173Z compile_program: close time.busy=299µs time.idle=200ns
+Proving program with hash 853dfcda9f58bd93d45c8eba730c14eecc732f771cc8afd246d3efecd7ddd21d...
+2025-09-16T10:40:57.886006Z prove_program:execute_program: close time.busy=302ms time.idle=552ns
+2025-09-16T10:40:57.886039Z prove_program: Generated execution trace of 80 columns and 524288 steps (7% padded) in 301 ms
+2025-09-16T10:40:57.906616Z prove_program:build_domain: close time.busy=20.5ms time.idle=731ns trace_length=524288 lde_domain_size=4194304
+2025-09-16T10:41:19.086099Z prove_program:commit_to_main_trace_segment:extend_execution_trace: close time.busy=21.2s time.idle=781ns num_cols=80 blowup=8
+2025-09-16T10:41:21.200277Z prove_program:commit_to_main_trace_segment:compute_execution_trace_commitment: close time.busy=2.11s time.idle=742ns commitment_domain_size=4194304
+2025-09-16T10:41:21.200309Z prove_program:commit_to_main_trace_segment: close time.busy=23.3s time.idle=311ns
+2025-09-16T10:41:21.328769Z prove_program:build_aux_trace: close time.busy=128ms time.idle=941ns
+2025-09-16T10:41:25.852392Z prove_program:commit_to_aux_trace_segment:extend_execution_trace: close time.busy=4.52s time.idle=541ns num_cols=8 blowup=8
+2025-09-16T10:41:26.517630Z prove_program:commit_to_aux_trace_segment:compute_execution_trace_commitment: close time.busy=665ms time.idle=1.09µs commitment_domain_size=4194304
+2025-09-16T10:41:26.517667Z prove_program:commit_to_aux_trace_segment: close time.busy=5.19s time.idle=512ns
+2025-09-16T10:41:27.427768Z prove_program:evaluate_constraints: close time.busy=894ms time.idle=721ns ce_domain_size=4194304
+2025-09-16T10:41:28.061253Z prove_program:commit_to_constraint_evaluations:build_composition_poly_columns: close time.busy=633ms time.idle=601ns num_columns=8
+2025-09-16T10:41:32.179889Z prove_program:commit_to_constraint_evaluations:evaluate_composition_poly_columns: close time.busy=4.12s time.idle=730ns
+2025-09-16T10:41:32.838732Z prove_program:commit_to_constraint_evaluations:compute_constraint_evaluation_commitment: close time.busy=659ms time.idle=953ns log_domain_size=22
+2025-09-16T10:41:32.838760Z prove_program:commit_to_constraint_evaluations: close time.busy=5.41s time.idle=502ns
+2025-09-16T10:41:34.120381Z prove_program:build_deep_composition_poly: close time.busy=1.28s time.idle=611ns
+2025-09-16T10:41:34.655303Z prove_program:evaluate_deep_composition_poly: close time.busy=535ms time.idle=601ns
+2025-09-16T10:41:34.869776Z prove_program:compute_fri_layers: close time.busy=214ms time.idle=652ns num_layers=4
+2025-09-16T10:41:34.870233Z prove_program:determine_query_positions: close time.busy=424µs time.idle=351ns grinding_factor=16 num_positions=27
+2025-09-16T10:41:34.911383Z prove_program:build_proof_object: close time.busy=41.1ms time.idle=410ns
+2025-09-16T10:41:35.074983Z prove_program: close time.busy=37.5s time.idle=310ns
+Program proved in 37490 ms
+2025-09-16T10:41:35.075250Z write_data_to_proof_file: close time.busy=184µs time.idle=392ns path=miden-vm/masm-examples/hashing/blake3_1to1/blake3_1to1.proof size="96 KB"
+2025-09-16T10:41:35.075420Z write_data_to_output_file: close time.busy=156µs time.idle=151ns path=miden-vm/masm-examples/hashing/blake3_1to1/blake3_1to1.outputs
+Output: [4210649924, 4239425932, 2583891669, 2278324621, 1697424527, 1323302812, 3062448259, 2695025053, 0, 0, 0, 0, 0, 0, 0, 0]
